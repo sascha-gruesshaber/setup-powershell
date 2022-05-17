@@ -1,4 +1,6 @@
 # How to setup my nice PowerShell on Windows:
+![image](https://user-images.githubusercontent.com/11362893/168903228-b8a9c969-f259-4549-bb6b-93ea8d80d99a.png)
+
 1. Open current powershell and execute the following commands:
 ```
 winget install Microsoft.WindowsTerminal
@@ -10,6 +12,23 @@ winget install Microsoft.PowerShell
 3. Open Windows Terminal and ...
     - ... set the new font as default for all shells in the settings
     - ... set the default shell to the newest installed PowerShell in the settings
+    - ... set transparency
+    STRG+SHIFT+, -> 
+    ```
+    "profiles": 
+    {
+        "defaults": 
+        {
+            "font": 
+            {
+                "face": "Hack NF",
+                "size": 10
+            },
+            "opacity": 87,
+            "useAcrylic": true
+        },
+        ...
+     ```
 4. Execute the following commands in the windows terminal in the latest powershell:
 ```
 Write-Host "Installing Oh My Posh", Terminal-Icons and z..."
