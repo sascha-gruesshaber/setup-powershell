@@ -1,4 +1,4 @@
-# How to setup my nice PowerShell on Windows:
+# How to setup my PowerShell:
 ![image](https://user-images.githubusercontent.com/11362893/168903228-b8a9c969-f259-4549-bb6b-93ea8d80d99a.png)
 
 1. Open current powershell and execute the following commands:
