@@ -18,7 +18,7 @@ Install-Module -Name Terminal-Icons -Repository PSGallery
 Install-Module -Name z
 
 Write-Host "Download a nice theme for Oh My Posh and save it locally"
-curl https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/iterm2.omp.json --output .OhMyPoshTheme.json
+curl https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/powerlevel10k_rainbow.omp.json --output .OhMyPoshTheme.json
 
 Write-Host "Write imports to your $profile"
 Add-Content $profile "#Profile Setup done via https://github.com/doenersoldat/setup-powershell"
