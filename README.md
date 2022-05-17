@@ -3,7 +3,7 @@
 ```
 winget install Microsoft.WindowsTerminal
 winget install Microsoft.PowerShell
-winget install Git.Git
+# winget install Git.Git
 ```
 2. Install a nice font from https://www.nerdfonts.com/
     - Hack NF is a nice one for example 
@@ -17,7 +17,7 @@ winget install oh-my-posh
 Install-Module -Name Terminal-Icons -Repository PSGallery
 Install-Module -Name z
 
-Write-Host "Download a nice Theme for oh my posh and save it locally"
+Write-Host "Download a nice theme for Oh My Posh and save it locally"
 curl https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/iterm2.omp.json --output .OhMyPoshTheme.json
 
 Write-Host "Write imports to your $profile"
