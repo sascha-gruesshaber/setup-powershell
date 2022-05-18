@@ -31,7 +31,7 @@ winget install Microsoft.PowerShell
      ```
 4. Execute the following commands in the windows terminal in the latest powershell:
 ```
-Write-Host "Installing Oh My Posh", Terminal-Icons and z..."
+Write-Host "Installing Oh My Posh, Terminal-Icons and z..."
 winget install oh-my-posh
 Install-Module -Name Terminal-Icons -Repository PSGallery
 Install-Module -Name z
