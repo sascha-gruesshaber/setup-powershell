@@ -29,6 +29,19 @@ winget install Microsoft.PowerShell
         },
         ...
      ```
+3.1. Overwrite the settings for terminal.integrated.profiles.windows with the following to get rid of ugly ANSI chars in VS Code terminal
+```
+"PowerShell": {
+            "source": "PowerShell",
+            "icon": "terminal-powershell",
+            "args": [
+                "-NoExit",
+                "-Command",
+                "oh-my-posh init pwsh | Invoke-Expression"
+            ]
+        }
+```
+
 4. Execute the following commands in the windows terminal in the latest powershell:
 ```
 Write-Host "Installing Oh My Posh, Terminal-Icons and z..."
