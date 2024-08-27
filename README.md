@@ -57,6 +57,17 @@ Add-Content $profile "#Profile Setup done via https://github.com/doenersoldat/se
 Add-Content $profile "oh-my-posh init pwsh --config '~/.OhMyPoshTheme.json' | Invoke-Expression"
 Add-Content $profile "Import-Module -Name Terminal-Icons"
 Add-Content $profile "Import-Module z"
+
 Exit
 ```
 5. Restart your Windows Terminal, it should look a lot nicer now :-)
+
+# Additional aliases:
+
+## Remove gone branches
+function Remove-GoneBranches {
+    git branch -vv | where {$_ -match '\[origin/.*: gone\]'} | foreach { 
+        git branch -D $_.split(' ', [StringSplitOptions]'RemoveEmptyEntries')[0]
+    }
+}
+Set-Alias rgb Remove-GoneBranches
