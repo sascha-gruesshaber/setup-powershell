@@ -30,7 +30,7 @@ winget install Microsoft.PowerShell
         ...
      ```
 3.1. Overwrite the settings for terminal.integrated.profiles.windows with the following to get rid of ugly ANSI chars in VS Code terminal
-```
+```JSON
 "PowerShell": {
             "source": "PowerShell",
             "icon": "terminal-powershell",
@@ -62,12 +62,14 @@ Exit
 ```
 5. Restart your Windows Terminal, it should look a lot nicer now :-)
 
-# Additional aliases:
+## Additional aliases:
 
-## Remove gone branches
+### Remove gone branches
+```PowerShell
 function Remove-GoneBranches {
     git branch -vv | where {$_ -match '\[origin/.*: gone\]'} | foreach { 
         git branch -D $_.split(' ', [StringSplitOptions]'RemoveEmptyEntries')[0]
     }
 }
 Set-Alias rgb Remove-GoneBranches
+```
