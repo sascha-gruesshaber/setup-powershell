@@ -73,3 +73,6 @@ function Remove-GoneBranches {
 }
 Set-Alias rgb Remove-GoneBranches
 ```
+
+6. Additional things:
+winget install Wilfred.difftastic
