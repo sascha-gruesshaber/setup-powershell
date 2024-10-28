@@ -2,7 +2,7 @@
 ![image](https://user-images.githubusercontent.com/11362893/168903228-b8a9c969-f259-4549-bb6b-93ea8d80d99a.png)
 
 1. Open current powershell and execute the following commands:
-```
+```PS
 winget install Microsoft.WindowsTerminal
 winget install Microsoft.PowerShell
 # winget install Git.Git
@@ -43,7 +43,7 @@ winget install Microsoft.PowerShell
 ```
 
 4. Execute the following commands in the windows terminal in the latest powershell:
-```
+```PS
 Write-Host "Installing Oh My Posh, Terminal-Icons and z..."
 winget install oh-my-posh
 Install-Module -Name Terminal-Icons -Repository PSGallery
@@ -65,7 +65,7 @@ Exit
 ## Additional aliases:
 
 ### Remove gone branches
-```PowerShell
+```PS
 function Remove-GoneBranches {
     git branch -vv | where {$_ -match '\[origin/.*: gone\]'} | foreach { 
         git branch -D $_.split(' ', [StringSplitOptions]'RemoveEmptyEntries')[0]
@@ -74,5 +74,8 @@ function Remove-GoneBranches {
 Set-Alias rgb Remove-GoneBranches
 ```
 
-6. Additional things:
+### Better git diff tool:
+See https://difftastic.wilfred.me.uk/git.html for more information
+```PS
 winget install Wilfred.difftastic
+```
