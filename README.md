@@ -5,62 +5,28 @@
 ```PS
 winget install Microsoft.WindowsTerminal
 winget install Microsoft.PowerShell
-# winget install Git.Git
-```
-2. Install a nice font from https://www.nerdfonts.com/
-    - Hack NF is a nice one for example 
-3. Open Windows Terminal and ...
-    - ... set the new font as default for all shells in the settings
-    - ... set the default shell to the newest installed PowerShell in the settings
-    - ... set transparency
-    STRG+SHIFT+, -> 
-    ```
-    "profiles": 
-    {
-        "defaults": 
-        {
-            "font": 
-            {
-                "face": "Hack NF",
-                "size": 10
-            },
-            "opacity": 87,
-            "useAcrylic": true
-        },
-        ...
-     ```
-3.1. Overwrite the settings for terminal.integrated.profiles.windows with the following to get rid of ugly ANSI chars in VS Code terminal
-```JSON
-"PowerShell": {
-            "source": "PowerShell",
-            "icon": "terminal-powershell",
-            "args": [
-                "-NoExit",
-                "-Command",
-                "oh-my-posh init pwsh | Invoke-Expression"
-            ]
-        }
-```
+winget install Git.Git
 
-4. Execute the following commands in the windows terminal in the latest powershell:
+# Install a mono font to be used in the windows terminal
+winget install --id=DEVCOM.JetBrainsMonoNerdFont  -e
+
+```
+2. Open up windows terminal and setup the newly installed nerd font as default
+3 Execute the following commands in the windows terminal in the latest powershell:
 ```PS
-Write-Host "Installing Oh My Posh, Terminal-Icons and z..."
-winget install oh-my-posh
+winget install Starship.Starship
 Install-Module -Name Terminal-Icons -Repository PSGallery
 Install-Module -Name z
 
-Write-Host "Download a nice theme for Oh My Posh and save it locally"
-curl https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/powerlevel10k_rainbow.omp.json --output .OhMyPoshTheme.json
-
 Write-Host "Write imports to your $profile"
-Add-Content $profile "#Profile Setup done via https://github.com/doenersoldat/setup-powershell"
-Add-Content $profile "oh-my-posh init pwsh --config '~/.OhMyPoshTheme.json' | Invoke-Expression"
+Add-Content $profile "#Profile Setup done via https://github.com/sascha-gruesshaber/setup-powershell"
+Add-Content $profile "Invoke-Expression (&starship init powershell)"
 Add-Content $profile "Import-Module -Name Terminal-Icons"
 Add-Content $profile "Import-Module z"
 
 Exit
 ```
-5. Restart your Windows Terminal, it should look a lot nicer now :-)
+3. Restart your Windows Terminal, it should look a lot nicer now :-)
 
 ## Additional aliases:
 
@@ -74,8 +40,15 @@ function Remove-GoneBranches {
 Set-Alias rgb Remove-GoneBranches
 ```
 
-### Better git diff tool:
-See https://difftastic.wilfred.me.uk/git.html for more information
+### Better git diff:
+
 ```PS
-winget install Wilfred.difftastic
+winget install dandavison.delta
+
+git config --global core.pager delta
+git config --global interactive.diffFilter 'delta --color-only'
+git config --global delta.navigate true
+git config --global delta.dark true
+git config --global delta.side-by-side true
+git config --global merge.conflictStyle zdiff33
 ```
