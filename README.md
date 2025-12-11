@@ -6,29 +6,30 @@
 winget install Microsoft.WindowsTerminal
 winget install Microsoft.PowerShell
 winget install Git.Git
+winget install -e --id=JesseDuffield.lazygit
 
 # Install a mono font to be used in the windows terminal
 winget install --id=DEVCOM.JetBrainsMonoNerdFont  -e
-
 ```
+
 2. Open up windows terminal and setup the newly installed nerd font as default
-3 Execute the following commands in the windows terminal in the latest powershell:
+
+3. Execute the following commands in the windows terminal in the latest powershell:
 ```PS
-winget install Starship.Starship
 Install-Module -Name Terminal-Icons -Repository PSGallery
 Install-Module -Name z
 
-Write-Host "Write imports to your $profile"
+winget install JanDeDobbeleer.OhMyPosh --source winget
+
+Write-Host "Write startp config to your local user `$profile`"
 Add-Content $profile "#Profile Setup done via https://github.com/sascha-gruesshaber/setup-powershell"
-Add-Content $profile "Invoke-Expression (&starship init powershell)"
-Add-Content $profile "Import-Module -Name Terminal-Icons"
+Add-Content $profile "oh-my-posh init pwsh | Invoke-Expression"
+Add-Content $profile "Import-Module -Name Terminal-Icons."
 Add-Content $profile "Import-Module z"
-
-Exit
 ```
-3. Restart your Windows Terminal, it should look a lot nicer now :-)
+4. Restart your Windows Terminal, it should look a lot nicer now :-)
 
-## Additional aliases:
+## Additional things:
 
 ### Remove gone branches
 ```PS
@@ -37,18 +38,43 @@ function Remove-GoneBranches {
         git branch -D $_.split(' ', [StringSplitOptions]'RemoveEmptyEntries')[0]
     }
 }
-Set-Alias rgb Remove-GoneBranches
+Set-Alias -Name rgb Remove-GoneBranches
 ```
 
-### Better git diff:
-
+### Shortcut for lazygit
 ```PS
-winget install dandavison.delta
+Set-Alias -Name lg -Value "lazygit"
+```
 
-git config --global core.pager delta
-git config --global interactive.diffFilter 'delta --color-only'
-git config --global delta.navigate true
-git config --global delta.dark true
-git config --global delta.side-by-side true
-git config --global merge.conflictStyle zdiff33
+### Config für lazygit
+```yml
+os:
+  edit: 'code {{filename}}'
+gui:
+  nerdFontsVersion: "3"
+customCommands:
+  - key: '<c-u>'
+    context: 'localBranches'
+    description: 'Remove all gone branches from local git repository (no healthy upstream branches)'
+    command: 'pwsh -command "rgb"'
+  - key: '<c-n>'
+    description: 'Create a new branch following our naming conventions'
+    context: 'localBranches'
+    prompts:
+      - type: 'menu'
+        title: 'Kind of branch?'
+        key: 'BranchType'
+        options:
+          - name: 'feature'
+            description: 'a feature branch'
+            value: 'feature'
+          - name: 'bugfix'
+            description: 'a bug fix branch'
+            value: 'bug'
+      - type: 'input'
+        title: 'Ticket number?'
+        key: 'BranchName'
+        initialValue: 'XYZ-'
+    command: "git checkout -b {{.Form.BranchType}}/{{.Form.BranchName}}"
+    loadingText: 'Creating branch "{{.Form.BranchType}}/{{.Form.BranchName}}"'
 ```
