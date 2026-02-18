@@ -7,6 +7,8 @@ winget install Microsoft.WindowsTerminal
 winget install Microsoft.PowerShell
 winget install Git.Git
 winget install -e --id=JesseDuffield.lazygit
+winget install --id yorukot.superfile
+winget install ajeetdsouza.zoxide
 
 # Install a mono font to be used in the windows terminal
 winget install --id=DEVCOM.JetBrainsMonoNerdFont  -e
